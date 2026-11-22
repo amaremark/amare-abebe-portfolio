@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "s1dy4w03WKd70QsH2",
+      });
+   })();
+</script>
+</head>
+<body>
+    <section id="landing-page">
+   <nav>
+    <figure>
+        <img class="mylogo" src="./asset/logo.jpg"  alt="">
+    </figure>
+
+  <ul class="nav__link--list
+  sidebar" >
+
+     <li onclick=closwSidbar() class="nav__link">
+            <a href="#" class="
+            nav__link--anchor
+            link__over-effect
+            link__hover-effect--black">
+
+            <img class="closebar  " src="./asset/close_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg " alt="">
+        </a>
+        </li>
+        <li class="nav__link closemenu">
+            <a href="./index.html" class="
+            nav__link--anchor
+            link__over-effect
+            link__hover-effect--black">Home</a>
+        </li>
+        <li class="nav__link closemenu ">
+            <a href="#" class="
+            nav__link--anchor
+            link__over-effect
+            link__hover-effect--black">Projects</a>
+        </li>
+        <li onclick="closwSidbar(); showModal()"  class="nav__link closemenu ">
+            <a href="#" class="
+            nav__link--anchor
+            link__over-effect
+            link__hover-effect--black">About</a>
+        </li>
+        <li onclick="closwSidbar(); showModal()" class="nav__link closemenu">
+            <a href="#" class="
+            nav__link--anchor
+            link__over-effect
+            link__hover-effect--black">Contact</a>
+        </li>
+         <li class="nav__link closemenu ">
+            <a href="./blog.html" class="
+            nav__link--anchor
+            link__over-effect
+            link__hover-effect--black">Blog</a>
+        </li>
+        <li onclick="closwSidbar(); toggleDarkMode()" class="nav__link  closemenu">
+            <a href="#" class="
+            nav__link--anchor
+            link__over-effect
+            link__hover-effect--black">
+            <i class="fas fa-adjust"  ></i>
+
+        </a>
+        </li>
+        
+    </ul>
+
+
+
+
+
+
+    <ul class="nav__link--list">
+        <li  onclick="showModal()" class="nav__link   sidebarOnmobile">
+            <a href="#" class="
+            nav__link--anchor
+            link__hover-effect
+            link__hover-effect--black">About</a>
+        </li>
+        <li class="nav__link  sidebarOnmobile">
+            <a href="#" class="
+            nav__link--anchor
+            link__hover-effect
+            link__hover-effect--black">Projects</a>
+        </li>
+        <li onclick="showModal()" class="nav__link  sidebarOnmobile">
+            <a href="#" class="
+            nav__link--anchor
+            link__hover-effect
+            link__hover-effect--black">Contact</a>
+        </li>
+        <li onclick="showModal()" class="nav__link  sidebarOnmobile">
+            <a href="./blog.html" class="
+            nav__link--anchor
+            link__hover-effect
+            link__hover-effect--black">Blog</a>
+        </li>
+        
+        <li class="nav__link  sidebarOnmobile  click">
+            <a href="#" class="
+            nav__link--anchor
+            link__hover-effect
+            link__hover-effect--black">
+            <i onclick="toggleDarkMode()" class="fas fa-adjust" ></i>
+
+        </a>
+        </li>    
+        <li onclick=showSidebar()    class="nav__link" >
+            <a   href="#" class="
+            nav__link--anchor
+            link__hover-effect
+            link__hover-effect--black">
+           
+           <img class="burgermenu" src="./asset/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+
+        </a>
+        </li>
+    </ul>
+   </nav>
+
+   <div class="header">
+    <div class="header__content">
+    <h1 class="title">
+        Hey </h1>
+       <h1 class="title title--secondary"> <span class="purple">I'm Amare.</span> </h1>
+        <p class="section__para">
+           A hands-on <b>Front-end Developer </b> who turns clean code into responsive, user-friendly web experiences.<br> With a strong foundation in HTML, CSS, JavaScript, and React.js  <br> I learn best by building real components and solving layout challenges directly in code.
+        
+   <div class="social--list">
+        <a href="https://google.com" target="_blank" class="social__link click">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="" class="social__link click">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="./asset/Junior_Front_End_Resume.docx" target="_blank" class="social__link click">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        </div>
+      </div>
+
+   </div>
+
+   <button onclick="showModal()" class="mail__btn click">
+    <i   class="fas fa-envelope"></i>
+   </button>
+
+   <a href="#projects" class="scroll">
+    <div class="scroll__icon clock"></div>
+   </a>
+
+   <div class="modal">
+    <div class="half__modal about__modal">
+        <h3 class="modal__title modal__title--about click " onclick="showModal()">
+        About Me
+        </h3>
+        <h4 class="modal__sub-title modal__sub-title--about">
+             Frontend Software Engineer.
+            </h4>
+        <p class="modal__para"> Hi, I'm Amare a <span class="purple">Frontend Developer</span>  dedicated to crafting fast, responsive, and accessible websites. 
+         <br> I specialize in HTML, CSS, JavaScript, and React.js,  <br> and I thrive on bringing ideas to life through clean code and thoughtful design. Always learning, always building.</p>
+        
+        <div class="modal__languages">
+            <figure class="modal__language">
+                <img class="modal__img" src="./asset/HTML5_logo.webp" alt="">
+              <span class="language__name">html</span>
+            </figure>
+            <figure class="modal__language">
+                <img class="modal__img" src="./asset/CSS3_logo.webp" alt="">
+              <span class="language__name">css</span>
+            </figure>
+            <figure class="modal__language">
+                <img class="modal__img" src="./asset/JavaScript-logo.png" alt="">
+              <span class="language__name">JavaScript</span>
+            </figure>
+            <figure class="modal__language">
+                <img class="modal__img" src="./asset/React-icon.svg" alt="">
+              <span class="language__name">React.js</span>
+            </figure>
+        </div>
+    </div>
+    <div class="half__modal contact__modal">
+        <i class="fas fa-times modal__exit click" onclick="showModal()"></i>
+          <!-- <i onclick = closeModal() class="fas fa-times modal__exit click"></i> -->
+        <h3 class="modal__title modal__title--contact">
+           
+            let's have a chat!
+        </h3>
+        <h4 class="modal__sub-title modal__sub-title--contact">I'm currently open to new opprortunities.</h4>
+        <form id="contact__form" onsubmit="contact(event)">
+            <div class="form__item">
+            <label class="form__item--label">Name</label>
+            <input class="input" type="text" name="user_name" required ></input>
+            </div>
+             <div class="form__item">
+            <label  class="form__item--label">Email</label>
+            <input class="input" type="email" name="uesr_email" required></input>
+             </div>
+              <div class="form__item">
+            <label  class="form__item--label">Message</label>
+            <textarea class="input" type="text" name="message" required></textarea>
+              </div>
+          
+           <button id="contact__submit" class="form__submit">Send it my way </button>
+        </form>
+        <div class="modal__overlay modal__overlay--loading">
+            <i class="fas fa-spinner"></i>
+        </div>
+        <div class="modal__overlay modal__overlay--success">
+            Thanks for the message! Looking forward to speaking to you soon.
+        </div>
+    </div>
+   
+   </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="row">
+                <h1 class="section__title">
+                    Here are some of my <span class="purple">Projects</span>
+                </h1>
+          
+               <ul class="project__list">
+                <li class="project">
+                    <div class="project__wraper">
+                        <img src="./asset/image1.png" class="project__img" alt="">
+                        <div class="project__wraper--bg"></div>
+                        <div class="project__description">
+                            <h3 class="project__description--title">
+                                lets build a responsive website
+                            </h3>
+                            <h4 class="project__description--sub-title">
+                                HTML, CSS,JavaScript.
+                            </h4>
+                            <p class="project__description--para">
+                               <p class="section__para">
+  I'm a hands-on <b class="purple">Front-end Developer</b> turning clean code into responsive, user-friendly web experiences.
+  <br> With a strong foundation in <b>HTML, CSS, JavaScript, and React.js</b>, I bring ideas to life by building real components and solving layout challenges directly in code.
+                            </p>
+                           <div class="project__description--links">
+                            <a href="#" class="project__description--link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="project__description--link">
+                                <i class="fas fa-link"></i>
+                            </a>
+                           </div>
+                        </div>
+                    </div>
+                </li>
+               </ul>
+
+
+                <h4 class="section__title section__title--second">
+                    Writing modular front-end components in the <span class="purple">code editor.</span>
+                </h4>
+          
+               <ul class="project__list">
+                <li class="project">
+                    <div class="project__wraper">
+                        <img src="./asset/image3.webp" class="project__img" alt="">
+                        <div class="project__wraper--bg"></div>
+                        <div class="project__description">
+                            <h3 class="project__description--title">
+                                lets build a responsive website
+                            </h3>
+                            <h4 class="project__description--sub-title">
+                                HTML, CSS,JavaScript.
+                            </h4>
+                            <p class="project__description--para">
+                                Frontend Software Engineer</b> who builds fast, responsive, and accessible web applications.
+  <br> Specialized in <b>HTML, CSS, JavaScript, and React.js</b>—turning clean code and thoughtful UI design into seamless user experiences.
+                            </p>
+                           <div class="project__description--links">
+                            <a href="#" class="project__description--link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="project__description--link">
+                                <i class="fas fa-link"></i>
+                            </a>
+                           </div>
+                        </div>
+                    </div>
+                </li>
+               </ul>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+
+    </section>
+ <footer >
+    <div class="container ">
+        <div class="row footer__row">
+
+    
+<figure>
+    <img src="./asset/logo.jpg" class="footer__logo" alt="">
+</figure>
+<div class="footer__social--list">
+    <a href="" class="footer__social--link 
+    liver__hover-efect
+    liver__hover-effect--white">Github</a>
+    <a href="#" onclick="showModal()" class="footer__social--link 
+    liver__hover-efect
+    liver__hover-effect--white" >Email</a>
+    <a href="" class="footer__social--link 
+    liver__hover-efect
+    liver__hover-effect--white">Linkdin</a>
+    <a href="./asset/Junior_Front_End_Resume.docx" target="_blank" class="footer__social--link 
+    liver__hover-efect
+    liver__hover-effect--white">Resume</a>
+</div>
+    <div class="footer__copyrigt">
+       Copyright &copy; Amare S. Abebe 2026
+    </div>
+</div>
+ </div>
+ </footer>
+    <script src="app.js" defer></script>
+</body>
+</html>

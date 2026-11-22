@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amare | Frontend Dev Blog</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet"
+href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <style>
+    /* Blog Page Specific Styles (Complements your style.css) */
+    .blog__header {
+      padding: 64px 24px 32px;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .blog__badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #962b96;
+      background: rgba(150, 43, 150, 0.1);
+      border: 1px solid rgba(150, 43, 150, 0.25);
+      margin-bottom: 16px;
+    }
+
+    .blog__title {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .blog__subtitle {
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      line-height: 1.7;
+      color: #4b5563;
+      max-width: 600px;
+      margin: 0 auto 28px;
+    }
+
+    /* Filter Pills */
+    .blog__filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .filter__btn {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(150, 43, 150, 0.25);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 220ms ease;
+    }
+
+    .filter__btn:hover,
+    .filter__btn.active {
+      background: linear-gradient(135deg, #962b96, #d90077);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 6px 18px rgba(150, 43, 150, 0.28);
+    }
+
+    /* Blog Grid */
+    .blog__container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* Featured Article Card */
+    .blog__featured {
+      display: flex;
+      flex-wrap: wrap;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 14px 40px rgba(12, 11, 12, 0.08);
+      margin-bottom: 44px;
+      transition: transform 300ms ease, box-shadow 300ms ease;
+    }
+
+    .blog__featured:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(150, 43, 150, 0.16);
+    }
+
+    .blog__featured--img {
+      flex: 1 1 380px;
+      min-height: 280px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .blog__featured--content {
+      flex: 1 1 400px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .post__meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #962b96;
+      margin-bottom: 12px;
+    }
+
+    .post__meta span.dot {
+      color: #9ca3af;
+    }
+
+    .post__meta span.date {
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .blog__featured--title {
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .blog__excerpt {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #4b5563;
+      margin-bottom: 22px;
+    }
+
+    .read__more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #962b96;
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      transition: gap 200ms ease, color 200ms ease;
+    }
+
+    .read__more:hover {
+      color: #d90077;
+      gap: 12px;
+    }
+
+    /* Post Grid */
+    .blog__grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .blog__card {
+      width: calc((100% - 48px) / 3);
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 28px rgba(12, 11, 12, 0.06);
+      display: flex;
+      flex-direction: column;
+      transition: transform 280ms ease, box-shadow 280ms ease;
+    }
+
+    .blog__card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 38px rgba(150, 43, 150, 0.15);
+    }
+
+    .blog__card--img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .blog__card--body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .blog__card--title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .blog__card--body .blog__excerpt {
+      flex: 1;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    /* Article Reader Modal */
+    .article__modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 11, 12, 0.72);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .article__modal.open {
+      display: flex;
+    }
+
+    .article__modal--box {
+      background: #ffffff;
+      color: #111827;
+      max-width: 720px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .article__close {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #6b7280;
+      background: none;
+      border: none;
+    }
+
+    .article__close:hover {
+      color: #d90077;
+    }
+
+    .article__modal--body p {
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    /* Dark Theme Overrides */
+    .dark-theme .blog__subtitle,
+    .dark-theme .blog__excerpt,
+    .dark-theme .post__meta span.date {
+      color: #d1d5db;
+    }
+
+    .dark-theme .filter__btn {
+      color: #f3f4f6;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .dark-theme .blog__featured,
+    .dark-theme .blog__card,
+    .dark-theme .article__modal--box {
+      background: #161518;
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #f9fafb;
+    }
+
+    .dark-theme .article__close {
+      color: #d1d5db;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .blog__card {
+        width: calc((100% - 24px) / 2);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .blog__card {
+        width: 100%;
+      }
+      .blog__featured--content,
+      .article__modal--box {
+        padding: 24px;
+      }
+    }
+
+    .shapes{
+    position: fixed;
+    }
+    .shape--0 {
+        top: 15vh;
+        left:5vw;
+    }
+    .shape--1 {
+        top: 15vh;
+        left:50vw;
+    }
+    .shape--3 {
+        top: 15vh;
+        left:5vw;
+    }
+    .shape--4 {
+        top: 50vh;
+        left:50vw;
+    }
+    .shape--5 {
+        top: 50vh;
+        left:80vw;
+    }
+    .shape--6 {
+        top: 50vh;
+        left:5vw;
+    }
+    .shape--7 {
+        top: 80vh;
+        left:5vw;
+    }
+    .shape--8 {
+        top: 80vh;
+        left:50vw
+    }
+    .shape--9 {
+        top: 80vh;
+        left:80vw;
+    }
+  </style>
+  
+</head>
+<body>
+    <section id="landing__page" onmousemove="moveBackground(event)">
+
+   
+  <!-- Navigation (Matches your index.html) -->
+  <nav>
+    <figure>
+      <a href="./index.html">
+        <img class="mylogo" src="./asset/logo.jpg" alt="Amare Logo" />
+      </a>
+    </figure>
+
+    <ul class="nav__link--list">
+      <li class="nav__link">
+        <a href="./index.html" class="nav__link--anchor link__hover-effect link__hover-effect--black">Home</a>
+      </li>
+      <li class="nav__link">
+        <a href="./index.html#projects" class="nav__link--anchor link__hover-effect link__hover-effect--black">Projects</a>
+      </li>
+      <li class="nav__link">
+        <a href="./blog.html" class="nav__link--anchor link__hover-effect link__hover-effect--black">Blog</a>
+      </li>
+      <li class="nav__link click">
+        <a href="#" onclick="toggleDarkMode(); return false;" class="nav__link--anchor" aria-label="Toggle dark mode">
+          <i class="fas fa-adjust"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Blog Hero Header -->
+  <header class="blog__header">
+    <span class="blog__badge">Dev Notes &amp; Case Studies</span>
+    <h1 class="blog__title">
+      Building, Breaking &amp; <span class="purple">Learning in Public</span>
+    </h1>
+    <p class="blog__subtitle">
+      Practical notes from my front-end engineering journey—covering responsive CSS layouts, JavaScript UI state, React components, and real-world debugging lessons.
+    </p>
+
+    <!-- Category Filter Buttons -->
+    <div class="blog__filters">
+      <button class="filter__btn active" onclick="filterPosts('all', this)">All Posts</button>
+      <button class="filter__btn" onclick="filterPosts('css', this)">CSS &amp; Layout</button>
+      <button class="filter__btn" onclick="filterPosts('javascript', this)">JavaScript</button>
+      <button class="filter__btn" onclick="filterPosts('react', this)">React.js</button>
+    </div>
+  </header>
+
+  <!-- Main Blog Content -->
+  <main class="blog__container">
+    <!-- Featured Article -->
+    <article class="blog__featured" data-category="css">
+      <img src="./asset/blog1.png" alt="Responsive portfolio architecture" class="blog__featured--img" />
+      <div class="blog__featured--content">
+        <div class="post__meta">
+          <span>CSS &amp; Layout</span>
+          <span class="dot">&bull;</span>
+          <span class="date">November 2026 &bull; 4 min read</span>
+        </div>
+        <h2 class="blog__featured--title">
+          How I Built My Responsive Developer Portfolio From Scratch
+        </h2>
+        <p class="blog__excerpt">
+          A behind-the-scenes breakdown of structuring Flexbox layouts, smooth modal transitions, dark mode theming, and clean responsive breakpoints without relying on heavy CSS frameworks.
+        </p>
+        <button class="read__more" onclick="openArticle(0)">
+          Read Full Article <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </article>
+
+    <!-- 3-Column Article Grid -->
+    <section class="blog__grid">
+      <article class="blog__card" data-category="javascript">
+        <img src="./asset/blog1.png" alt="JavaScript Modal Transitions" class="blog__card--img" />
+        <div class="blog__card--body">
+          <div class="post__meta">
+            <span>JavaScript</span>
+            <span class="dot">&bull;</span>
+            <span class="date">3 min read</span>
+          </div>
+          <h3 class="blog__card--title">
+            Why <code>display: flex</code> Breaks CSS Transitions (And How <code>setTimeout</code> Fixes It)
+          </h3>
+          <p class="blog__excerpt">
+            Switching an element from <code>display: none</code> to <code>flex</code> skips browser paint frames. Here is the tiny 10ms pattern that makes modal animations glide smoothly.
+          </p>
+          <button class="read__more" onclick="openArticle(1)">
+            Read Article <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </article>
+
+      <article class="blog__card" data-category="css">
+        <img src="./asset/blog2.png" alt="Flexbox vs Grid" class="blog__card--img" />
+        <div class="blog__card--body">
+          <div class="post__meta">
+            <span>CSS &amp; Layout</span>
+            <span class="dot">&bull;</span>
+            <span class="date">5 min read</span>
+          </div>
+          <h3 class="blog__card--title">
+            Mastering <code>flex-wrap</code> &amp; <code>calc()</code> for Clean Project Galleries
+          </h3>
+          <p class="blog__excerpt">
+            How to build multi-column image grids that adapt effortlessly from 3 columns on desktop to 2 on tablet and 1 on mobile using pure Flexbox.
+          </p>
+          <button class="read__more" onclick="openArticle(2)">
+            Read Article <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </article>
+
+      <article class="blog__card" data-category="react">
+        <img src="./asset/blog3.png" alt="React Component Thinking" class="blog__card--img" />
+        <div class="blog__card--body">
+          <div class="post__meta">
+            <span>React.js</span>
+            <span class="dot">&bull;</span>
+            <span class="date">4 min read</span>
+          </div>
+          <h3 class="blog__card--title">
+            Thinking in Reusable Components: Moving From Vanilla JS to React
+          </h3>
+          <p class="blog__excerpt">
+            What changed in how I structure UI state, props, and interactive forms once I started translating static HTML/CSS layouts into React components.
+          </p>
+          <button class="read__more" onclick="openArticle(3)">
+            Read Article <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Reader Modal for Full Articles -->
+  <div id="articleModal" class="article__modal" onclick="closeArticleOutside(event)">
+    <div class="article__modal--box">
+      <button class="article__close" onclick="closeArticle()" aria-label="Close article">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="post__meta" id="modalMeta"></div>
+      <h2 id="modalTitle" style="font-size: 1.75rem; font-weight: 800; margin-bottom: 18px;"></h2>
+      <div id="modalBody" class="article__modal--body"></div>
+    </div>
+  </div>
+<div class="floating-icons">
+    <i class="shapes shape--0 devicon-html5-plain colored"></i>
+    <i class="shapes shape--1 devicon-css3-plain colored"></i>
+    <i class="shapes shape--2 devicon-javascript-plain colored"></i>
+    <i class="shapes shape--3 devicon-react-original colored"></i>
+    <i class="shapes shape--4 devicon-python-plain colored"></i>
+    <i class="shapes shape--5 devicon-github-original"></i>
+    <i class="shapes shape--6 devicon-html5-plain colored"></i>
+    <i class="shapes shape--7 devicon-css3-plain colored"></i>
+    <i class="shapes shape--8 devicon-javascript-plain colored"></i>
+   
+</div>
+  <!-- Footer (Matches your index.html) -->
+  <footer>
+    <div class="container">
+      <div class="row footer__row">
+        <figure>
+          <img src="./asset/logo.jpg" class="footer__logo" alt="Amare Logo" />
+        </figure>
+        <div class="footer__social--list">
+          <a href="./index.html" class="footer__social--link liver__hover-efect liver__hover-effect--white">Home</a>
+          <a href="./index.html#projects" class="footer__social--link liver__hover-efect liver__hover-effect--white">Projects</a>
+          <a href="./blog.html" class="footer__social--link liver__hover-efect liver__hover-effect--white">Blog</a>
+          <a href="./asset/Junior_Front_End_Resume.docx" target="_blank" class="footer__social--link liver__hover-efect liver__hover-effect--white">Resume</a>
+        </div>
+        <div class="footer__copyrigt">
+          Copyright &copy; Amare S. Abebe 2026
+        </div>
+      </div>
+    </div>
+  </footer>
+    </section>
+  <script>
+    const articles = [
+      {
+        meta: "CSS & Layout • November 2026 • 4 min read",
+        title: "How I Built My Responsive Developer Portfolio From Scratch",
+        body: `
+          <p>Building a personal portfolio from scratch taught me more about real-world CSS than any tutorial ever could. Instead of reaching for a CSS library, I focused on semantic HTML, Flexbox alignment, and fluid typography with <code>clamp()</code>.</p>
+          <p>One key takeaway was separating layout structure from theme styling—using a single <code>.dark-theme</code> class on the body lets every section, icon, and card adapt cleanly without duplicating markup.</p>
+        `
+      },
+      {
+        meta: "JavaScript • November 2026 • 3 min read",
+        title: "Why display: flex Breaks CSS Transitions (And How setTimeout Fixes It)",
+        body: `
+          <p>When an element has <code>display: none</code>, the browser removes it from the render tree completely. If you set <code>modal.style.display = "flex"</code> and add your animation class on the very next line, the browser batches both changes into a single frame—skipping your transition.</p>
+          <p>Wrapping <code>document.body.classList.add("modal--open")</code> inside a <code>10ms</code> <code>setTimeout</code> gives the browser one paint cycle to render the flex container first, letting your opacity and slide transitions run smoothly.</p>
+        `
+      },
+      {
+        meta: "CSS & Layout • November 2026 • 5 min read",
+        title: "Mastering flex-wrap & calc() for Clean Project Galleries",
+        body: `
+          <p>Combining <code>display: flex</code>, <code>flex-wrap: wrap</code>, and <code>gap: 16px</code> makes multi-row galleries predictable without complex media queries.</p>
+          <p>Using <code>width: calc((100% - 32px) / 3)</code> accounts for the two 16px gaps between three cards, keeping every column aligned down to the pixel on desktop and wrapping cleanly on smaller viewports.</p>
+        `
+      },
+      {
+        meta: "React.js • November 2026 • 4 min read",
+        title: "Thinking in Reusable Components: Moving From Vanilla JS to React",
+        body: `
+          <p>In vanilla JavaScript, managing modals, dark mode, and filtered lists means manually querying DOM nodes and toggling classes. In React, those same interactions become declarative state variables.</p>
+          <p>Mastering DOM manipulation first made learning React much clearer—because I understood exactly what React is automating under the hood.</p>
+        `
+      }
+    ];
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-theme");
+    }
+
+    function filterPosts(category, btn) {
+      document.querySelectorAll(".filter__btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      document.querySelectorAll("[data-category]").forEach((post) => {
+        if (category === "all" || post.dataset.category === category) {
+          post.style.display = post.classList.contains("blog__featured") ? "flex" : "flex";
+        } else {
+          post.style.display = "none";
+        }
+      });
+    }
+
+    function openArticle(index) {
+      const article = articles[index];
+      document.getElementById("modalMeta").textContent = article.meta;
+      document.getElementById("modalTitle").textContent = article.title;
+      document.getElementById("modalBody").innerHTML = article.body;
+      document.getElementById("articleModal").classList.add("open");
+    }
+
+    function closeArticle() {
+      document.getElementById("articleModal").classList.remove("open");
+    }
+
+    function closeArticleOutside(event) {
+      if (event.target.id === "articleModal") {
+        closeArticle();
+      }
+    }
+
+  const scaleFactor = 1 / 20;
+
+function moveBackground(event) {
+    const shapes = document.querySelectorAll(".shapes");
+    const x = event.clientX * scaleFactor;
+    const y = event.clientY * scaleFactor;
+
+    for (let i = 0; i < shapes.length; ++i) {
+        const isOdd = i % 2 !== 0;
+        const boolInt = isOdd ? -1 : 1;
+        shapes[i].style.transform = `translate(${x * boolInt}px, ${y * boolInt}px) rotate(${x * boolInt * 10}deg)`;
+    }
+}
+  </script>
+</body>
+</html>
