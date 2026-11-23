@@ -25,9 +25,12 @@
     background-color: white;
 }
 .dark-theme .nav__link--anchor,
+
 .nav__link--sibar{
   color: white;
 }
+
+
 .dark-theme .closebar {
   filter: invert(0);
 }
@@ -667,7 +670,6 @@ filter: blur(5px);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em; /* Tight editorial tracking */
-  color: #111827;
   margin-bottom: 8px;
 }
 
