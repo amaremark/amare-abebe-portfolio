@@ -15,6 +15,7 @@
 .dark-theme header,
 .dark-theme footer,
 .dark-theme div
+
  {
     background-color: #0f172a;
     color: white;
@@ -23,7 +24,16 @@
 .dark-theme .scroll__icon{
     background-color: white;
 }
-
+.dark-theme .nav__link--anchor,
+.nav__link--sibar{
+  color: white;
+}
+.dark-theme .closebar {
+  filter: invert(0);
+}
+.dark-theme .burgermenu {
+  filter: invert(0);
+}
 .dark-theme .mail__btn {
   background-color: #ffffff;
   color: #0c0b0c;
